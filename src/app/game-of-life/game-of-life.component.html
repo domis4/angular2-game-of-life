@@ -1,0 +1,8 @@
+<p>
+  game-of-life works!
+</p>
+<div *ngFor="let gridX of grid" class="cell">
+  <div *ngFor="let gridY of gridX; let i = index; " class="cell">{{gridY}}
+    <br *ngIf="gridY.length >= i" />
+  </div>
+</div>

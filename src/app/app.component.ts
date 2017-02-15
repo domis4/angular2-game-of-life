@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GameOfLifeComponent } from './game-of-life/game-of-life.component'
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app works!';
+  grid = [32, 32];
+  gameOfLife = new GameOfLifeComponent;
+  updateGrid() {
+    this.gameOfLife.generateGrid(this.grid);
+  }
 }
