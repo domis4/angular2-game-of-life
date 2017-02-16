@@ -4,14 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { GameOfLifeComponent } from './game-of-life/game-of-life.component';
+import { GameOfLifeModule } from './game-of-life/game-of-life.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    GameOfLifeComponent
+    AppComponent
   ],
   imports: [
+    GameOfLifeModule,
     BrowserModule,
     FormsModule,
     HttpModule
@@ -19,4 +19,5 @@ import { GameOfLifeComponent } from './game-of-life/game-of-life.component';
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

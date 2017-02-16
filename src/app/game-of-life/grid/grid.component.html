@@ -1,0 +1,11 @@
+<h1>Game of Life</h1>
+<input type="text" [(ngModel)]="gridSize[0]" /> 
+<input type="text" [(ngModel)]="gridSize[1]" />
+<input type="submit" value="Generate!" (click)="reinitGrid()" />
+<table class="grid">
+  <tr *ngFor="let cellY of grid">
+    <td class="cell" *ngFor="let cellX of cellY">
+      {{cellX}}
+    </td>
+  </tr>
+</table>
