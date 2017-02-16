@@ -1,11 +1,16 @@
 <h1>Game of Life</h1>
 <input type="text" [(ngModel)]="gridSize[0]" /> 
 <input type="text" [(ngModel)]="gridSize[1]" />
-<input type="submit" value="Generate!" (click)="reinitGrid()" />
+<input type="submit" value="Empty" (click)="reinitGrid('empty')" />
+<input type="submit" value="Random" (click)="reinitGrid('random')" />
+
+
 <table class="grid">
-  <tr *ngFor="let cellY of grid">
-    <td class="cell" *ngFor="let cellX of cellY">
-      {{cellX}}
+  <tr *ngFor="let cellY of grid; let i = index;">
+    <td class="cell" 
+      [class.dead]="cellX === 1" 
+      *ngFor="let cellX of cellY; let j = index;" 
+      (click)="switchState(i, j)">
     </td>
   </tr>
 </table>
