@@ -100,4 +100,10 @@ export class GameService {
     });
     this.grid = tempGrid;
   }
+
+  autoPlay() {
+    setInterval(() => {
+      this.nextStep();
+    }, 200);
+  }
 }

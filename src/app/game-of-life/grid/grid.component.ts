@@ -39,4 +39,8 @@ export class GridComponent implements OnInit {
     this.gameService.nextStep();
   }
 
+  autoPlay() {
+    this.gameService.autoPlay();
+  }
+
 }
