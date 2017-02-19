@@ -3,10 +3,11 @@
 <input type="text" [(ngModel)]="gridSize[1]" />
 <input type="submit" value="Empty" (click)="reinitGrid('empty')" />
 <input type="submit" value="Random" (click)="reinitGrid('random')" />
+<input type="submit" value="Next Step" (click)="nextStep()" />
 
 
 <table class="grid">
-  <tr *ngFor="let cellY of grid; let i = index;">
+  <tr *ngFor="let cellY of getGrid(); let i = index;">
     <td class="cell" 
       [class.dead]="cellX === 1" 
       *ngFor="let cellX of cellY; let j = index;" 

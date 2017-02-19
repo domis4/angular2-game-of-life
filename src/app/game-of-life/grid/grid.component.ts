@@ -1,40 +1,42 @@
 import { Component, OnInit } from '@angular/core';
+import { GameService } from '../game.service';
 
 @Component({
   selector: 'game-grid',
   templateUrl: './grid.component.html',
-  styleUrls: ['./grid.component.css']
+  styleUrls: ['./grid.component.css'],
+    providers: [GameService]
 })
 export class GridComponent implements OnInit {
+  gameService: GameService;
   gridSize = [12, 12];
-  grid = [[]];
-  constructor() { }
+  constructor(gameService: GameService) {
+    this.gameService = gameService;
+   }
 
   ngOnInit() {
+    this.gameService.setGridSize(this.gridSize);
     this.reinitGrid('random');
   }
 
   switchState(x: number, y: number) {
-    if (this.grid[x][y] === 0) {
-      this.grid[x][y] = 1;
-    } else {
-      this.grid[x][y] = 0;
-    }
+    this.gameService.switchState(x, y);
   }
 
   reinitGrid(mode: string) {
-    this.grid = [];
-    for (let i = 0; i < this.gridSize[0]; i++) {
-      this.grid[i] = [];
-      for (let j = 0; j < this.gridSize[1]; j++) {
-        if (mode === 'random') {
-          this.grid[i][j] = Math.round(Math.random());
-        }
-        if (mode === 'empty') {
-          this.grid[i][j] = 0;
-        }
-      }
-    }
+   this.gameService.reinitGrid(mode, this.gridSize[0], this.gridSize[1]);
+  }
+
+  getGrid() {
+    return this.gameService.getGrid();
+  }
+
+  getGridSize() {
+    return this.gameService.getGridSize();
+  }
+
+  nextStep() {
+    this.gameService.nextStep();
   }
 
 }
