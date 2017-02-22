@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { GameOfLifeModule } from './game-of-life/game-of-life.module';
-
+import { FpsService } from './game-of-life/fps/fps.service';
 @NgModule({
   declarations: [
     AppComponent
@@ -16,7 +16,7 @@ import { GameOfLifeModule } from './game-of-life/game-of-life.module';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [FpsService],
   bootstrap: [AppComponent]
 })
 

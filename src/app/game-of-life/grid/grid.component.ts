@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GameService } from '../game.service';
+import { FpsService } from '../fps/fps.service';
 
 @Component({
   selector: 'game-grid',
@@ -9,9 +10,12 @@ import { GameService } from '../game.service';
 })
 export class GridComponent implements OnInit {
   gameService: GameService;
-  gridSize = [12, 12];
-  constructor(gameService: GameService) {
+  gridSize = [24, 24];
+  isPlaying = false;
+  fpsService: FpsService;
+  constructor(gameService: GameService, fpsService: FpsService) {
     this.gameService = gameService;
+    this.fpsService = fpsService;
    }
 
   ngOnInit() {
@@ -39,8 +43,20 @@ export class GridComponent implements OnInit {
     this.gameService.nextStep();
   }
 
-  autoPlay() {
-    this.gameService.autoPlay();
+  autoPlay(isPlaying: boolean) {
+    if (isPlaying) {
+      this.gameService.autoPlay();
+    } else {
+      this.gameService.stopPlay();
+    }
+  }
+
+  getDisplayFps() {
+    return this.fpsService.getDisplayFps();
+  }
+
+  getDeltaTime() {
+    return this.fpsService.getDeltaTime();
   }
 
 }

@@ -1,10 +1,16 @@
 import { Injectable } from '@angular/core';
+import { FpsService } from './fps/fps.service';
 
 @Injectable()
 export class GameService {
-  grid = [[]];
-  gridSize = [];
-  constructor() { }
+  private grid = [[]];
+  private gridSize = [];
+  private playInterval;
+  private fpsService: FpsService;
+  constructor(fpsService: FpsService) {
+    this.fpsService = fpsService;
+    this.fpsService.setLimit(60);
+  }
 
   getGrid() {
     return this.grid;
@@ -102,8 +108,14 @@ export class GameService {
   }
 
   autoPlay() {
-    setInterval(() => {
+    let fpsLimit = () => {
       this.nextStep();
-    }, 200);
+    }
+    this.playInterval = setInterval(() => {
+      this.fpsService.limit(fpsLimit);
+    });
+  }
+  stopPlay() {
+    clearInterval(this.playInterval);
   }
 }

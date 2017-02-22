@@ -4,6 +4,6 @@
     height: 20px;
 }
 
-.cell.dead {
+.cell.alive {
     background-color: grey;
 }
